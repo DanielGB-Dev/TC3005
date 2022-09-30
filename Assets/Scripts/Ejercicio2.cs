@@ -36,11 +36,23 @@ public class Ejercicio2 : MonoBehaviour
     public float scaleMercury;
     public Color colorMercury;
 
+    GameObject venus;
+    Vector3[] vVenus;
+    Matrix4x4 trVenus;
+    Matrix4x4 ttVenus;
+    Matrix4x4 tsVenus;
+    float rotYVenus;
+    public float translateVenus;
+    public float rotSpeedVenus;
+    public float scaleVenus;
+    public Color colorVenus;
+
     // Start is called before the first frame update
     void Start()
     {
         rotYSun = 0;
         rotYMercury = 0;
+        rotYVenus = 0;
 
         sun = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         vSun = sun.GetComponent<MeshFilter>().mesh.vertices;
@@ -49,6 +61,10 @@ public class Ejercicio2 : MonoBehaviour
         mercury = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         vMercury = mercury.GetComponent<MeshFilter>().mesh.vertices;
         mercury.GetComponent<MeshRenderer>().material.color = colorMercury;
+
+        venus = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        vVenus = mercury.GetComponent<MeshFilter>().mesh.vertices;
+        venus.GetComponent<MeshRenderer>().material.color = colorVenus;
     }
 
     // Update is called once per frame
@@ -59,7 +75,8 @@ public class Ejercicio2 : MonoBehaviour
         sun.GetComponent<MeshFilter>().mesh.vertices = Transformaciones.Transform(trSun, vSun);
         sun.GetComponent<MeshFilter>().mesh.RecalculateNormals();
 
-        planetMovement(trMercury, rotSpeedMercury, ttMercury, translateMercury, tsMercury, scaleMercury, vMercury, mercury);      
+        planetMovement(trMercury, rotSpeedMercury, ttMercury, translateMercury, tsMercury, scaleMercury, vMercury, mercury);
+        planetMovement(trVenus, rotSpeedVenus, ttVenus, translateVenus, tsVenus, scaleVenus, vVenus, venus);      
     }
 
     void planetMovement(Matrix4x4 tr, float rotSpeed, Matrix4x4 tt, float tSpeed, Matrix4x4 ts, float scale, Vector3[] v, GameObject planet)
