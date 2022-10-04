@@ -11,7 +11,7 @@ public class Robot : MonoBehaviour
 
     enum PARTS
     {
-        RP_HEAP, RP_TORSO, RP_CHEST
+        RP_HEAP, RP_TORSO, RP_CHEST, RP_NECK, RP_HEAD
     }
     // Start is called before the first frame update
     void Start()
@@ -26,13 +26,23 @@ public class Robot : MonoBehaviour
         m_locations.Add(Transformaciones.Translate(0f,0f,0f));
         //TORSO
         go_parts.Add(GameObject.CreatePrimitive(PrimitiveType.Cube));
-        m_scales.Add(Transformaciones.Scale(1f, 0.5f, 1f));
-        m_locations.Add(Transformaciones.Translate(0f,0f,0f));
+        m_scales.Add(Transformaciones.Scale(1f, 0.75f, 1f));
+        m_locations.Add(Transformaciones.Translate(0f,0.75f/2f,0f));
+        //CHEST
+        go_parts.Add(GameObject.CreatePrimitive(PrimitiveType.Cube));
+        m_scales.Add(Transformaciones.Scale(1.2f, 0.4f, 1.2f));
+        m_locations.Add(Transformaciones.Translate(0f,0.2f + 0.25f + 0.75f,0f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Matrix4x4 accumT = Matrix4x4.identity;
+        for (int i = 0; i < go_parts.Count; i++)
+        {
+            Matrix4x4 m = m_locations[i] * m_scales[i];
+            go_parts[i].GetComponent<MeshFilter>().mesh.vertices = Transformaciones.Transform(m, v3_originals);
+            go_parts[i].GetComponent<MeshFilter>().mesh.RecalculateBounds();
+        }
     }
 }
