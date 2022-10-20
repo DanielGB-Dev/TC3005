@@ -296,9 +296,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b395e154c74a46d196e9d8a5a70ba10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  dialogues:
-  - Collect all the trash and finish the enemy
+  dialogue: Haha it works
+  audio: {fileID: 8300000, guid: c551141c1a51d4399976d28a0cef331d, type: 3}
+  source: {fileID: 857884557}
 --- !u!82 &857884557
 AudioSource:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e244bd3f244b346048186b1192890948, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -471,8 +471,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780026877}
-  m_LocalRotation: {x: 0.042407386, y: -0.95719045, z: 0.18756059, w: 0.21635406}
-  m_LocalPosition: {x: 0.037040535, y: 0.06634545, z: 0.0686718}
+  m_LocalRotation: {x: 0.045959964, y: 0.94977456, z: -0.16782878, w: 0.26009503}
+  m_LocalPosition: {x: -0.050388668, y: 0.06737803, z: 0.07614402}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -508,8 +508,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b395e154c74a46d196e9d8a5a70ba10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 0
-  dialogues: []
+  dialogue: 
+  audio: {fileID: 0}
+  source: {fileID: 0}
 --- !u!4 &2112600944
 Transform:
   m_ObjectHideFlags: 0

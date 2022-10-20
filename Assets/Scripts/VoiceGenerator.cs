@@ -9,20 +9,37 @@ public enum Character
 
 public class VoiceGenerator : MonoBehaviour
 {
-    public Character characterType;
+    //public Character characterType;
     [TextArea(2,4)]
-    public string[] dialogues; 
+    public string dialogue;
+    public AudioClip audio;
+    public AudioSource source;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        //ReproduceVoice(dialogue);
+        StartCoroutine(ReproduceSound(dialogue));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator ReproduceSound(string dialogue)
     {
-        
+        foreach (char c in dialogue)
+        {
+            //Debug.Log(c);
+            if (char.IsLetter(c))
+            {
+                source.PlayOneShot(audio);
+                yield return new WaitForSeconds(0.1f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.15f);
+            }
+        }
     }
+
+    
 }
 
 
