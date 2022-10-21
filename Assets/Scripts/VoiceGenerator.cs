@@ -4,21 +4,40 @@ using UnityEngine;
 
 public enum Character
 {
-  Grump, Cute, Crazy,
+  Grump, Normal, Cute, Crazy,
 }
 
 public class VoiceGenerator : MonoBehaviour
 {
-    //public Character characterType;
+    public Character characterType;
     [TextArea(2,4)]
     public string dialogue;
-    public AudioClip audio;
+    [Space]
     public AudioSource source;
+    
+    private float pitch;
     
     // Start is called before the first frame update
     void Start()
     {
-        //ReproduceVoice(dialogue);
+        switch (characterType)
+        {
+            case Character.Grump:
+                pitch = 0.85f;
+                break;
+            case Character.Normal:
+                pitch = 1;
+                break;
+            case Character.Cute:
+                pitch = 1.5f;
+                break;
+            case Character.Crazy:
+                pitch = 2;
+                break;
+            default:
+                pitch = 1;
+                break;
+        }
         StartCoroutine(ReproduceSound(dialogue));
     }
 
@@ -26,15 +45,16 @@ public class VoiceGenerator : MonoBehaviour
     {
         foreach (char c in dialogue)
         {
-            //Debug.Log(c);
             if (char.IsLetter(c))
             {
-                source.PlayOneShot(audio);
-                yield return new WaitForSeconds(0.1f);
+                string audioClip = "Audio/Animalese_" + char.ToUpper(c);
+                source.PlayOneShot(Resources.Load<AudioClip>(audioClip));
+                source.pitch = pitch;
+                yield return new WaitForSeconds(0.085f);
             }
             else
             {
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.085f);
             }
         }
     }
